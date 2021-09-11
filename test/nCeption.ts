@@ -22,15 +22,19 @@ describe("nCeption - The dream is real", function () {
   });
 
   it("Should fail to mint an N for Token ID 0", async () => {
-    await expect(nContract.claim(0)).to.be.revertedWith("Token ID invalid");
+    await expect(nContract.claim(0, { value: 88000000000000000000n })).to.be.revertedWith("Token ID invalid");
   });
 
   it("Should fail to mint an N for Token ID 8889", async () => {
-    await expect(nContract.claim(8889)).to.be.revertedWith("Token ID invalid");
+    await expect(nContract.claim(8889, { value: 88000000000000000000n })).to.be.revertedWith("Token ID invalid");
+  });
+
+  it("Should fail to mint an N when incorrect value sent", async () => {
+    await expect(nContract.claim(1, { value: 10 })).to.be.revertedWith("UBQ value sent is not correct");
   });
 
   it("Should mint an N with Token ID 1", async () => {
-    expect(await nContract.claim(1)).to.emit(
+    await expect(nContract.claim(1, { value: 88000000000000000000n })).to.emit(
       nContract,
       "Transfer"
     );

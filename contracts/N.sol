@@ -139,6 +139,8 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
 
     uint8[] private suffixes = [1, 2];
 
+    uint256 public claimPrice = 88.0 ether;
+
     function random(string memory input) internal pure returns (uint256) {
         return uint256(keccak256(abi.encodePacked(input)));
     }
@@ -269,9 +271,11 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
         return output;
     }
 
-    function claim(uint256 tokenId) public nonReentrant {
+    function claim(uint256 tokenId) public payable nonReentrant {
+        require(msg.value == claimPrice, 'UBQ value sent is not correct');
         require(tokenId > 0 && tokenId < 8889, "Token ID invalid");
         _safeMint(_msgSender(), tokenId);
+        // TODO: Burn sent UBQ
     }
 
     function toString(uint256 value) internal pure returns (string memory) {

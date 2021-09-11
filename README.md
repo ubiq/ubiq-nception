@@ -13,5 +13,11 @@ Smart contract are written in Solidity and managed via hardhat.
 ### Steps
 
 `yarn install` - Install packages
+
 `npx hardhat compile` - Compile contracts
+
 `npx hardhat test` - Run the test suite
+
+`npx hardhat node` - Run a local testing node
+
+`npx hardhat run --network localhost scripts/deploy.js` - Deploy to local testing node
