@@ -10,7 +10,16 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 export default {
-  solidity: "0.8.7",
+  solidity: {
+    compilers: [
+      {
+        version: "0.8.7",
+      },
+      {
+        version: "0.4.20",
+      },
+    ],
+  },
   settings: {
     optimizer: {
       enabled: true,
