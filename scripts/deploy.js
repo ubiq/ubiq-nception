@@ -6,8 +6,12 @@ async function main() {
     console.log("Deploying contracts with the account:", deployer.address);
     console.log("Account balance:", (await deployer.getBalance()).toString());
   
+    const Burner = await ethers.getContractFactory("Burner");
+    const burner = await Burner.deploy()
+    console.log("Burner contract address:", burner.address);
+
     const N = await ethers.getContractFactory("N");
-    const n = await N.deploy()
+    const n = await N.deploy(burner.address)
   
     console.log("nCeption contract address:", n.address);
 }

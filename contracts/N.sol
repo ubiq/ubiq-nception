@@ -6,6 +6,10 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
+    /* ========== STATE VARIABLES ========== */
+    // Burner smart contract address
+    address payable public burnerAddress;
+
     uint8[] private units = [
         1,
         2,
@@ -170,7 +174,7 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
     }
 
     function getSeventh(uint256 tokenId) public view returns (uint256) {
-        return pluck(tokenId, "SEVENT", units);
+        return pluck(tokenId, "SEVENTH", units);
     }
 
     function getEight(uint256 tokenId) public view returns (uint256) {
@@ -275,7 +279,9 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
         require(msg.value == claimPrice, 'UBQ value sent is not correct');
         require(tokenId > 0 && tokenId < 8889, "Token ID invalid");
         _safeMint(_msgSender(), tokenId);
-        // TODO: Burn sent UBQ
+        // Send UBQ claim value to Burner address
+        (bool success, ) = burnerAddress.call{value: msg.value}(abi.encodeWithSignature("Burn()"));
+        require(success, 'Transfer failed');
     }
 
     function toString(uint256 value) internal pure returns (string memory) {
@@ -300,7 +306,23 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
         return string(buffer);
     }
 
-    constructor() ERC721("n", "N") Ownable() {}
+    /* ========== CONSTRUCTOR ========== */
+    /**
+     * @param _burnerAddress Burner smart contract address where claimed funds will be forwarded to
+     */
+    constructor(
+        address payable _burnerAddress
+    ) ERC721("n", "N") Ownable() {
+        require(_burnerAddress != address(0), "nCeption: burner address is the zero address");
+
+        burnerAddress = _burnerAddress;
+    }
+
+    /* ========== RESTRICTED FUNCTIONS ========== */
+    function setBurnerAddress(address payable _burnerAddress) external onlyOwner {
+        require(_burnerAddress != address(0), "nCeption: Burner address is the zero address");
+        burnerAddress = _burnerAddress;
+    }
 }
 
 /// [MIT License]

@@ -7,14 +7,18 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 
 describe("nCeption - The dream is real", function () {
   let nContract: Contract;
+  let burnerContract: Contract;
   let owner: SignerWithAddress;
   let address1: SignerWithAddress;
   let address2: SignerWithAddress;
 
   beforeEach(async () => {
+    const Burner = await ethers.getContractFactory("Burner");
+    burnerContract = await Burner.deploy();
+
     const N = await ethers.getContractFactory("N");
     [owner, address1, address2] = await ethers.getSigners();
-    nContract = await N.deploy();
+    nContract = await N.deploy(burnerContract.address);
   });
 
   it("Should set the right owner", async () => {
