@@ -13,9 +13,6 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   if (network.name == "kovan") {
     claimPrice = "88000000000000000";
   }
-  if (network.name == "localhost") {
-    claimPrice = "88000000000000000";
-  }
 
   const burner = await deploy('Burner', {
     from: deployer,
