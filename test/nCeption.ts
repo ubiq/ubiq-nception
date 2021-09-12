@@ -18,7 +18,7 @@ describe("nCeption - The dream is real", function () {
 
     const N = await ethers.getContractFactory("N");
     [owner, address1, address2] = await ethers.getSigners();
-    nContract = await N.deploy(burnerContract.address);
+    nContract = await N.deploy(burnerContract.address, 88000000000000000000n);
   });
 
   it("Should set the right owner", async () => {

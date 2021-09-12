@@ -11,7 +11,7 @@ async function main() {
     console.log("Burner contract address:", burner.address);
 
     const N = await ethers.getContractFactory("N");
-    const n = await N.deploy(burner.address)
+    const n = await N.deploy(burner.address, 88000000000000000000n)
   
     console.log("nCeption contract address:", n.address);
 }

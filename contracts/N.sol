@@ -9,6 +9,8 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
     /* ========== STATE VARIABLES ========== */
     // Burner smart contract address
     address payable public burnerAddress;
+    // Claim price
+    uint256 public claimPrice;
 
     uint8[] private units = [
         1,
@@ -142,8 +144,6 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
     ];
 
     uint8[] private suffixes = [1, 2];
-
-    uint256 public claimPrice = 88.0 ether;
 
     function random(string memory input) internal pure returns (uint256) {
         return uint256(keccak256(abi.encodePacked(input)));
@@ -311,17 +311,25 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
      * @param _burnerAddress Burner smart contract address where claimed funds will be forwarded to
      */
     constructor(
-        address payable _burnerAddress
+        address payable _burnerAddress,
+        uint256 _claimPrice
     ) ERC721("n", "N") Ownable() {
         require(_burnerAddress != address(0), "nCeption: burner address is the zero address");
+        require(_claimPrice > 0, "nCeption: Claim price is 0");
 
         burnerAddress = _burnerAddress;
+        claimPrice = _claimPrice;
     }
 
     /* ========== RESTRICTED FUNCTIONS ========== */
     function setBurnerAddress(address payable _burnerAddress) external onlyOwner {
         require(_burnerAddress != address(0), "nCeption: Burner address is the zero address");
         burnerAddress = _burnerAddress;
+    }
+
+    function setClaimPrice(uint256 _claimPrice) external onlyOwner {
+        require(_claimPrice > 0, "nCeption: Claim price is 0");
+        claimPrice = _claimPrice;
     }
 }
 
