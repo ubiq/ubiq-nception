@@ -4,4 +4,5 @@ cache/
 node_modules/
 NOTES.txt
 *.code-workspace
+.env
 .gitignore
