@@ -20,4 +20,10 @@ Smart contract are written in Solidity and managed via hardhat.
 
 `npx hardhat node` - Run a local testing node
 
-`npx hardhat run --network localhost scripts/deploy.js` - Deploy to local testing node
+`npx hardhat deploy --network localhost` - Deploy to local testing node
+
+`npx hardhat deploy --network kovan` - Deploy to Kovan Testnet
+
+`npx hardhat --network kovan etherscan-verify --api-key <api-key>` - Etherscan Verify the Kovan Testnet deployment
+
+`npx hardhat --network kovan sourcify` - Sourcify the Kovan Testnet deployment

@@ -42,18 +42,25 @@ const config: HardhatUserConfig = {
     compilers: [
       {
         version: "0.8.7",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 800,
+          },
+          evmVersion: "istanbul",
+        },
       },
       {
         version: "0.4.20",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 800,
+          },
+          evmVersion: "istanbul",
+        },
       },
     ],
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 800,
-      },
-      evmVersion: "istanbul",
-    },
   },
   networks: {
     localhost: {
@@ -65,7 +72,7 @@ const config: HardhatUserConfig = {
       gasPrice: 11000000000,
     },
     kovan: {
-      url: "https://eth-kovan.alchemyapi.io/v2/${ALCHEMY_KOVAN_API_KEY}",
+      url: `https://eth-kovan.alchemyapi.io/v2/${ALCHEMY_KOVAN_API_KEY}`,
       chainId: 42,
       accounts: accounts('kovan'),
       gasPrice: 1100000000,
