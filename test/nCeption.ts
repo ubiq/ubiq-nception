@@ -43,4 +43,9 @@ describe("nCeption - The dream is real", function () {
       "Transfer"
     );
   });
+
+  it("Should fail to mint an N ID that has already been minted", async () => {
+    await nContract.claim(1, { value: 88000000000000000000n });
+    await expect(nContract.claim(1, { value: 88000000000000000000n })).to.be.revertedWith("ERC721: token already minted");
+  });
 });
