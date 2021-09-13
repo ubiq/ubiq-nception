@@ -33,8 +33,8 @@ The Burner contract is modified from one [originally created](https://ethereum.s
 ## Deployments
 
 Ubiq:
-* Burner: TBD
-* N: TBD
+* Burner: https://ubiqscan.io/address/0x3605d4B5ed61236A516ae3B988d39B65a57Af157
+* N: https://ubiqscan.io/address/0xA065Cf4b22a63Bfb731AB213108e76C60543d46b
 
 Kovan Testnet:
 * Burner: https://kovan.etherscan.io/address/0x7903f67e58b35e611fb3503f1246912d01cb4e32
