@@ -1,6 +1,7 @@
 import { task } from "hardhat/config";
 import "@nomiclabs/hardhat-waffle";
 import 'hardhat-deploy';
+import 'hardhat-abi-exporter';
 
 import * as dotenv from 'dotenv';
 import { HardhatUserConfig } from 'hardhat/config';
@@ -85,6 +86,9 @@ const config: HardhatUserConfig = {
       "kovan": '0x2EF7526b624136b2EE8B426c620C3E6b3997F24e',
     },
   },
+  abiExporter: {
+    path: './artifacts/abi',
+  }
 };
 
 export default config;
