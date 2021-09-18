@@ -309,6 +309,7 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
     /* ========== CONSTRUCTOR ========== */
     /**
      * @param _burnerAddress Burner smart contract address where claimed funds will be forwarded to
+     * @param _claimPrice Claim price per token
      */
     constructor(
         address payable _burnerAddress,
