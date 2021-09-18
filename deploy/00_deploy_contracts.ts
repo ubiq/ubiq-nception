@@ -11,7 +11,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   let claimPrice = "88000000000000000000";
 
   if (network.name == "kovan") {
-    claimPrice = "88000000000000000";
+    claimPrice = "8800000000000000";
   }
 
   const burner = await deploy('Burner', {

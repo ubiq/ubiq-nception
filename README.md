@@ -40,4 +40,4 @@ Kovan Testnet:
 * Burner: https://kovan.etherscan.io/address/0x7903f67e58b35e611fb3503f1246912d01cb4e32
 * N: https://kovan.etherscan.io/address/0x7dd3e993eb44160651f46951e7779572ab39aef9
 
-nCeption is deployed on Kovan Testnet with a 0.088 ETH Claim fee
+nCeption is deployed on Kovan Testnet with a 0.0088 ETH Claim fee
