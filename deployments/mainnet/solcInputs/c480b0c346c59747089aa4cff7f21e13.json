@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Burner.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.4.20;\n\n// Modified from: https://ethereum.stackexchange.com/a/17617\n\ncontract Burner {\n    uint256 public totalBurned;\n    \n    function Purge() public {\n        // the caller of purge action receives 0.001% out of the\n        // current balance.\n        msg.sender.transfer(this.balance / 10000);\n        assembly {\n            mstore(0, 0x30ff)\n            // transfer all funds to a new contract that will selfdestruct\n            // and destroy all UBQ in the process.\n            create(balance(address), 30, 2)\n            pop\n        }\n    }\n    \n    function Burn() public payable {\n        totalBurned += msg.value;\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 800
+    },
+    "evmVersion": "istanbul",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

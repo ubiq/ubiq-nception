@@ -1,0 +1,64 @@
+{
+  "address": "0x3605d4B5ed61236A516ae3B988d39B65a57Af157",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "Burn",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalBurned",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "Purge",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x98a1576b4bd429b80f985f0a281c73ab08383e78508c0c87d0a9ce460ad9bea2",
+  "receipt": {
+    "to": null,
+    "from": "0xc5070A5CB93F4497240a57969485C0FbF5c2ee3A",
+    "contractAddress": "0x3605d4B5ed61236A516ae3B988d39B65a57Af157",
+    "transactionIndex": 0,
+    "gasUsed": "124812",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xd1ade63464c5b2c7937fa5899aa9d5bfdd9693854b040bdf7990020bcc0459c0",
+    "transactionHash": "0x98a1576b4bd429b80f985f0a281c73ab08383e78508c0c87d0a9ce460ad9bea2",
+    "logs": [],
+    "blockNumber": 1674374,
+    "cumulativeGasUsed": "124812",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "solcInputHash": "c480b0c346c59747089aa4cff7f21e13",
+  "metadata": "{\"compiler\":{\"version\":\"0.4.20+commit.3155dd80\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"Burn\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalBurned\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"Purge\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"contracts/Burner.sol\":\"Burner\"},\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":800},\"remappings\":[]},\"sources\":{\"contracts/Burner.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.4.20;\\n\\n// Modified from: https://ethereum.stackexchange.com/a/17617\\n\\ncontract Burner {\\n    uint256 public totalBurned;\\n    \\n    function Purge() public {\\n        // the caller of purge action receives 0.001% out of the\\n        // current balance.\\n        msg.sender.transfer(this.balance / 10000);\\n        assembly {\\n            mstore(0, 0x30ff)\\n            // transfer all funds to a new contract that will selfdestruct\\n            // and destroy all UBQ in the process.\\n            create(balance(address), 30, 2)\\n            pop\\n        }\\n    }\\n    \\n    function Burn() public payable {\\n        totalBurned += msg.value;\\n    }\\n}\\n\",\"keccak256\":\"0x4c1bd9e9cb01f1f26077745fe0764a8fafa4cee12892dfd398690ffead5c8d8f\"}},\"version\":1}",
+  "bytecode": "0x6060604052341561000f57600080fd5b61014d8061001e6000396000f3006060604052600436106100565763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663396ed0ab811461005b578063d89135cd14610065578063f24e4a151461008a575b600080fd5b61006361009d565b005b341561007057600080fd5b6100786100a7565b60405190815260200160405180910390f35b341561009557600080fd5b6100636100ad565b6000805434019055565b60005481565b3373ffffffffffffffffffffffffffffffffffffffff166108fc6127103073ffffffffffffffffffffffffffffffffffffffff16318115156100eb57fe5b049081150290604051600060405180830381858888f19350505050151561011157600080fd5b6130ff6000526002601e3031f0505600a165627a7a72305820769b4786053f0882bf92349021de416d6859fc378a7eeffaf5212b9a63a60f6a0029",
+  "deployedBytecode": "0x6060604052600436106100565763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663396ed0ab811461005b578063d89135cd14610065578063f24e4a151461008a575b600080fd5b61006361009d565b005b341561007057600080fd5b6100786100a7565b60405190815260200160405180910390f35b341561009557600080fd5b6100636100ad565b6000805434019055565b60005481565b3373ffffffffffffffffffffffffffffffffffffffff166108fc6127103073ffffffffffffffffffffffffffffffffffffffff16318115156100eb57fe5b049081150290604051600060405180830381858888f19350505050151561011157600080fd5b6130ff6000526002601e3031f0505600a165627a7a72305820769b4786053f0882bf92349021de416d6859fc378a7eeffaf5212b9a63a60f6a0029",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
