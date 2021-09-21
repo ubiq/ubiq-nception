@@ -87,7 +87,7 @@ const config: HardhatUserConfig = {
     },
   },
   abiExporter: {
-    path: './artifacts/abi',
+    path: './data/abi',
   }
 };
 

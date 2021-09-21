@@ -186,7 +186,7 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
         string memory keyPrefix,
         uint8[] memory sourceArray
     ) internal view returns (uint256) {
-        uint256 rand = random(string(abi.encodePacked(keyPrefix, toString(tokenId))));
+        uint256 rand = random(string(abi.encodePacked(keyPrefix, toString(tokenId + 8888 + 8))));
         uint256 output = sourceArray[rand % sourceArray.length];
         uint256 luck = rand % 21;
         if (luck > 14) {
@@ -314,7 +314,7 @@ contract N is ERC721Enumerable, ReentrancyGuard, Ownable {
     constructor(
         address payable _burnerAddress,
         uint256 _claimPrice
-    ) ERC721("n", "N") Ownable() {
+    ) ERC721("nCeption", "N") Ownable() {
         require(_burnerAddress != address(0), "nCeption: burner address is the zero address");
         require(_claimPrice > 0, "nCeption: Claim price is 0");
 
