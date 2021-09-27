@@ -6,3 +6,4 @@ NOTES.txt
 *.code-workspace
 .env
 .gitignore
+data/
